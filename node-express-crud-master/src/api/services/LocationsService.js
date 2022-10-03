@@ -1,29 +1,29 @@
-const LocationsRepository = require('../../database/repositories/LocationsRepository')
+const brandsRepository = require('../../database/repositories/LocationsRepository')
 
-class LocationsService {
+class brandsService {
     async getAll(fields = undefined) {
-        return await LocationsRepository.getAll(fields)
+        return await brandsRepository.getAll(fields)
     }
 
     async getOne(id) {
-        return await LocationsRepository.getOne(id)
+        return await brandsRepository.getOne(id)
     }
 
-    async create(region) {
-        return await LocationsRepository.create(region)
+    async create(car) {
+        return await brandsRepository.create(car)
     }
 
-    async update(id, region) {
-        const existingLocation = await LocationsRepository.getOne(id)
-        if (existingLocation) {
-            return await existingLocation.update(region);
+    async update(id, car) {
+        const existingBrand = await brandsRepository.getOne(id)
+        if (existingBrand) {
+            return await existingBrand.update(car);
         }
         return null;
     }
 
     async delete(id) {
-        return await LocationsRepository.delete(id)
+        return await brandsRepository.delete(id)
     }
 }
 
-module.exports = new LocationsService()
+module.exports = new brandsService()

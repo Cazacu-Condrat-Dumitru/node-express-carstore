@@ -1,31 +1,31 @@
-const Country = require('../models').Country
+const car_type = require('../models').car_type
 
-class CountriesRepository {
+class carsRepository {
     async getAll(fields = undefined) {
-        return await Country.findAll({attributes: fields})
+        return await car_type.findAll({attributes: fields})
     }
 
     async getOne(id) {
-        return await Country.findByPk(id)
+        return await car_type.findByPk(id)
     }
 
-    async create(country) {
-        return await Country.create(country)
+    async create(car_type) {
+        return await car_type.create(car_type)
     }
 
-    async update(id, country) {
-        const existingCountry = await Country.findByPk(id)
-        if (existingCountry) {
-            return await existingCountry.update(country);
+    async update(id, car_type) {
+        const existingcar_type = await car_type.findByPk(id)
+        if (existingcar_type) {
+            return await existingcar_type.update(car_type);
         }
         return null;
     }
 
     async delete(id) {
-        return await Country.destroy({
+        return await car_type.destroy({
             where: { id: id }
         })
     }
 }
 
-module.exports = new CountriesRepository()
+module.exports = new carsRepository()

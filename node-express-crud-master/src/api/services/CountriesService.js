@@ -1,39 +1,39 @@
-const CountriesRepository = require('../../database/repositories/CountriesRepository')
-const RegionsRepository = require('../../database/repositories/RegionsRepository')
-const LocationsRepository = require('../../database/repositories/LocationsRepository')
+const carsRepository = require('../../database/repositories/CountriesRepository')
+const carRepository = require('../../database/repositories/RegionsRepository')
+const brandsRepository = require('../../database/repositories/LocationsRepository')
 
-class CountriesService {
+class carsService {
     async getAll(fields = undefined) {
-        return await CountriesRepository.getAll(fields)
+        return await carsRepository.getAll(fields)
     }
 
     async getOne(id) {
-        return await CountriesRepository.getOne(id)
+        return await carsRepository.getOne(id)
     }
 
-    async create(country) {
-        return await CountriesRepository.create(country)
+    async create(cars) {
+        return await carsRepository.create(cars)
     }
 
-    async update(id, country) {
+    async update(id, cars) {
         const existingCountry = await CountriesRepository.getOne(id)
         if (existingCountry) {
-            return await existingCountry.update(country);
+            return await existingCountry.update(cars);
         }
         return null;
     }
 
     async delete(id) {
-        return await CountriesRepository.delete(id)
+        return await carsRepository.delete(id)
     }
 
-    async getRegions(countryId, fields) {
-        return await RegionsRepository.getAllOfCountry(countryId, fields);
+    async getcar(carId, fields) {
+        return await RegionsRepository.getAllOfcar(carId, fields);
     }
 
-    async getLocations(countryId, fields) {
-        return await LocationsRepository.getAllOfCountry(countryId, fields);
+    async getbrands(carId, fields) {
+        return await carRepository.getAllOfcars(carId, fields);
     }
 }
 
-module.exports = new CountriesService()
+module.exports = new carsService()

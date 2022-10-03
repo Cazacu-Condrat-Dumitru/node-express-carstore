@@ -1,8 +1,8 @@
 const { Op } = require("sequelize");
-const RegionsRepository = require('./RegionsRepository')
+const carRepository = require('./RegionsRepository')
 const Location = require('../models').Location
 
-class LocationsRepository {
+class brandsRepository {
     async getAll(fields = undefined) {
         return await Location.findAll({attributes: fields})
     }
@@ -11,41 +11,41 @@ class LocationsRepository {
         return await Location.findByPk(id)
     }
 
-    async create(region) {
-        return await Location.create(region)
+    async create(car) {
+        return await Location.create(car)
     }
 
-    async update(id, location) {
-        const existingLocation = await Location.findByPk(id)
-        if (existingLocation) {
-            return await existingLocation.update(location);
+    async update(id, car) {
+        const existingcars = await Location.findByPk(id)
+        if (existingcars) {
+            return await existingcars.update(car);
         }
         return null;
     }
 
     async delete(id) {
-        return await Location.destroy({
+        return await car.destroy({
             where: { id: id }
         })
     }
 
-    async getAllOfRegion(regionId, fields = undefined) {
-        return await Location.findAll({
-            where: { regionId: regionId },
+    async getAllOfCar(id_carId, fields = undefined) {
+        return await car.findAll({
+            where: { id_carId: id_carId },
             attributes: fields
         })
     }
 
-    async getAllOfCountry(countryId, fields = undefined) {
-        const regions = await RegionsRepository.getAllOfCountry(countryId, ['id'])
+    async getAllOfCarType(id_carId, fields = undefined) {
+        const car = await RegionsRepository.getAllOfCarType(id_carId, ['id'])
         
-        return await Location.findAll({
+        return await car.findAll({
             where: {
-                regionId: { [Op.in]: regions.map(region => region.id) }
+                id_carId: { [Op.in]: car.map(car => car.id) }
             },
             attributes: fields
         })
     }
 }
 
-module.exports = new LocationsRepository()
+module.exports = new brandsRepository()

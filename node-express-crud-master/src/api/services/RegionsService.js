@@ -1,34 +1,34 @@
-const RegionsRepository = require('../../database/repositories/RegionsRepository')
-const LocationsRepository = require('../../database/repositories/LocationsRepository')
+const carRepository = require('../../database/repositories/RegionsRepository')
+const brandsRepository = require('../../database/repositories/LocationsRepository')
 
-class RegionsService {
+class carService {
     async getAll(fields = undefined) {
-        return await RegionsRepository.getAll(fields)
+        return await carRepository.getAll(fields)
     }
 
     async getOne(id) {
-        return await RegionsRepository.getOne(id)
+        return await carRepository.getOne(id)
     }
 
-    async create(region) {
-        return await RegionsRepository.create(region)
+    async create(car) {
+        return await carRepository.create(car)
     }
 
-    async update(id, region) {
-        const existingRegion = await RegionsRepository.getOne(id)
-        if (existingRegion) {
-            return await existingRegion.update(region);
+    async update(id, car) {
+        const existingcar = await carRepository.getOne(id)
+        if (existingcar) {
+            return await existingcar.update(car);
         }
         return null;
     }
 
     async delete(id) {
-        return await RegionsRepository.delete(id)
+        return await carRepository.delete(id)
     }
 
-    async getLocations(regionId) {
-        return await LocationsRepository.getAllOfRegion(regionId)
+    async getLocations(carId) {
+        return await brandsRepository.getAllOfcar(carId)
     }
 }
 
-module.exports = new RegionsService()
+module.exports = new carService()

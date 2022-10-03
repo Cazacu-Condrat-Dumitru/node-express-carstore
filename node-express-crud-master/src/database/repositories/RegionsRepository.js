@@ -1,42 +1,42 @@
-const Region = require('../models').Region
+const Car = require('../models').car
 
-class RegionsRepository {
+class carRepository {
     async getAll(fields = undefined) {
-        return await Region.findAll({attributes: fields})
+        return await Car.findAll({attributes: fields})
     }
 
     async getOne(id) {
-        return await Region.findByPk(id)
+        return await Car.findByPk(id)
     }
 
-    async create(region) {
-        return await Region.create(region)
+    async create( car) {
+        return await Region.create(car)
     }
 
-    async update(id, region) {
-        const existingRegion = await Region.findByPk(id)
-        if (existingRegion) {
-            return await existingRegion.update(region);
+    async update(id, car) {
+        const existingCar = await Car.findByPk(id)
+        if (existingCar) {
+            return await existingCar.update(car);
         }
         return null;
     }
 
     async delete(id) {
-        const deletedRegion = await Region.destroy({
+        const deletedCar = await Car.destroy({
             where: { id: id }
         })
-        if (deletedRegion) {
+        if (deletedCar) {
             return {};
         }
         return null;
     }
 
-    async getAllOfCountry(countryId, fields = undefined) {
-        return await Region.findAll({
-            where: { countryId: countryId },
+    async getAllOfCar(id_typeId, fields = undefined) {
+        return await Car.findAll({
+            where: { id_typeId: id_typeId },
             attributes: fields
         })
     }
 }
 
-module.exports = new RegionsRepository()
+module.exports = new carRepository()
